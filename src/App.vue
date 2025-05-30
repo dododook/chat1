@@ -4,7 +4,7 @@
       <nav class="navbar is-flex px-5 pt-5">
         <div class="navbar-brand">
           <div class="navbar-item">
-            <h1 class="title app-title">EasyChat</h1>
+            <h1 class="title app-title">Ron'room</h1>
           </div>
         </div>
         <div class="navbar-end">
