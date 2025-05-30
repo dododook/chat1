@@ -1,0 +1,361 @@
+/* --- Global Layout & Base --- */
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bulma-scheme-main-bis);
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  color: var(--bulma-text);
+}
+
+#app-container {
+  margin: 0 auto;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Responsive max-width for app-container */
+@media screen and (max-width: 768px) { #app-container { max-width: 100%; } }
+@media screen and (min-width: 769px) { #app-container { max-width: 720px; } }
+@media screen and (min-width: 1024px) { #app-container { max-width: 800px; } }
+@media screen and (min-width: 1216px) { #app-container { max-width: 900px; } }
+
+/* --- Theme Variables --- */
+:root {
+  /* Light Mode Bubble Colors */
+  --bubble-received-bg: rgba(225, 228, 232, 0.7);
+  --bubble-received-text: #363636;
+  --bubble-received-border: rgba(200, 200, 200, 0.25);
+
+  --bubble-sended-bg: rgba(0, 132, 255, 0.85); /* Zhihu Blue */
+  --bubble-sended-text: #ffffff;
+  --bubble-sended-border: rgba(0, 132, 255, 0.4);
+
+  --bubble-system-bg: rgba(230, 238, 248, 0.9);
+  --bubble-system-text: #30557c;
+  --bubble-system-border: rgba(190, 210, 235, 0.5);
+
+  /* Default Bulma variables for Light Mode */
+  --bulma-scheme-main-bis: #f5f5f5;
+  --bulma-body-background-color: #ffffff;
+  --bulma-text: #4a4a4a;
+
+  --bulma-card-background-color: #ffffff;
+  --bulma-card-body-background-color: #ffffff;
+
+  --bulma-input-background-color: #ffffff;
+  --bulma-input-color: #333333;
+  /* --bulma-input-border-color: #cccccc; -- Old flat border color */
+  
+  /* Skeuomorphic border colors for light mode inputs */
+  --bulma-input-skeu-border-dark: #a0a0a0;
+  --bulma-input-skeu-border-light: #e0e0e0;
+  
+  --bulma-input-focus-border-color: var(--bulma-link, #0084FF);
+  --bulma-input-placeholder-color: #757575;
+
+  --bulma-text-strong: #363636;
+  --bulma-title-color: #363636;
+  --bulma-label-color: #555555;
+  --bulma-button-text-color: #363636;
+  --bulma-button-background-color: #ffffff;
+  --bulma-button-border-color: #dbdbdb;
+  --bulma-link: #0084FF; /* Zhihu Blue */
+  --bulma-link-hover: #0073e6; /* Darker shade for hover */
+  --bulma-link-rgb: 0, 132, 255; /* RGB for Zhihu Blue (used in box-shadow) */
+  --bulma-info-light: hsl(204, 86%, 96%);
+  --bulma-info-dark: hsl(204, 71%, 53%);
+  --bulma-notification-background-color: #f5f5f5;
+  --bulma-grey: #7a7a7a;
+  --bulma-grey-light: #b5b5b5;
+  --bulma-link-light: var(--bulma-link);
+  --bulma-border-light: #eeeeee;
+}
+
+html.theme-dark {
+  --bulma-scheme-main-bis: #1e1e26;
+  --bulma-body-background-color: #1e1e26;
+  --bulma-text: #c0c0c0;
+  --bulma-card-background-color: #2a2a36;
+  --bulma-card-body-background-color: var(--bulma-card-background-color);
+
+  /* Input styles for dark mode remain flat unless specified otherwise */
+  --bulma-input-background-color: #2a2a36;
+  --bulma-input-color: #f5f5f5;
+  --bulma-input-border-color: #4a4a5a; /* Standard flat border for dark mode */
+  --bulma-input-focus-border-color: var(--bulma-link, #389eff);
+  --bulma-input-placeholder-color: #7a7a7a;
+  
+  /* Dark mode skeuomorphic variables (if you want to implement skeuomorphism for dark theme too) */
+  /* --bulma-input-skeu-border-dark: #1c1c1c; */
+  /* --bulma-input-skeu-border-light: #4a4a5a; */
+
+
+  --bulma-text-strong: #e0e0e0;
+  --bulma-title-color: #f0f0f0;
+  --bulma-label-color: #d0d0d0;
+  --bulma-button-text-color: #f0f0f0;
+  --bulma-button-background-color: #3a3a4a;
+  --bulma-button-border-color: #5a5a6a;
+  --bulma-link: #389eff; /* Lighter Zhihu blue for dark mode */
+  --bulma-link-hover: #5dade2;
+  --bulma-link-rgb: 56, 158, 255; /* RGB for Lighter Zhihu Blue (used in box-shadow) */
+  --bulma-info-light: hsl(204, 70%, 30%);
+  --bulma-info-dark: hsl(204, 70%, 80%);
+  --bulma-notification-background-color: #2c3e50;
+  --bulma-grey: #9a9a9a;
+  --bulma-grey-light: #7a7a7a;
+  --bulma-link-light: #5dade2;
+  --bulma-border-light: #3a3a4a;
+
+  /* Dark Mode Bubble Colors */
+  --bubble-received-bg: rgba(45, 48, 58, 0.7);
+  --bubble-received-text: #e0e0e0;
+  --bubble-received-border: rgba(80, 80, 90, 0.25);
+
+  --bubble-sended-bg: rgba(0, 132, 255, 0.75); /* Zhihu Blue */
+  --bubble-sended-text: #ffffff;
+  --bubble-sended-border: rgba(0, 132, 255, 0.35);
+
+  --bubble-system-bg: rgba(35, 45, 60, 0.9);
+  --bubble-system-text: #adc8e6;
+  --bubble-system-border: rgba(50, 70, 95, 0.5);
+}
+
+/* Theme Toggle Styles */
+#themeToggle { border: 0; cursor: pointer; }
+.theme_toggle_circle1 { transition: cx .5s,cy .5s; cx: 100%; cy: 0%; }
+.theme_toggle_circle2 { transition: r .3s; }
+.theme_toggle_svg { transition: transform .5s cubic-bezier(.68,-.55,.27,1.55); transform: rotate(90deg); }
+.theme_toggle_g { transition: opacity .5s; opacity: 1; }
+html.theme-dark .theme_toggle_circle1 { cx: 50%; cy: 23%; }
+html.theme-dark .theme_toggle_svg { transform: rotate(40deg); }
+html.theme-dark .theme_toggle_g { opacity: 0; }
+
+
+/* --- Message Item Styling --- */
+.msg-item {
+  display: inline-block;
+  position: relative;
+  max-width: 80%;
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+  padding: 0.65em 1.15em;
+  border-radius: 1.25em;
+  line-height: 1.45;
+  word-break: break-word;
+  background-color: var(--bubble-received-bg);
+  color: var(--bubble-received-text);
+  border: 1px solid var(--bubble-received-border);
+  backdrop-filter: blur(8px) saturate(160%);
+  -webkit-backdrop-filter: blur(8px) saturate(160%);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06), 0 2px 5px rgba(0,0,0,0.08);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+}
+
+html.theme-dark .msg-item {
+  box-shadow: 0 2px 5px rgba(0,0,0,0.20), 0 3px 6px rgba(0,0,0,0.25);
+}
+
+.sended .msg-item {
+  background-color: var(--bubble-sended-bg);
+  color: var(--bubble-sended-text);
+  border-color: var(--bubble-sended-border);
+}
+
+.system .msg-item {
+  background-color: var(--bubble-system-bg);
+  color: var(--bubble-system-text);
+  border: 1px solid var(--bubble-system-border);
+  max-width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0.8em;
+  padding: 0.5em 1em;
+  text-align: center;
+  box-shadow: none;
+  backdrop-filter: blur(5px) saturate(120%);
+  -webkit-backdrop-filter: blur(5px) saturate(120%);
+}
+
+/* --- App Title --- */
+.app-title {
+  --un-gradient-from-position:0%;
+  --un-gradient-from:var(--bulma-primary, hsl(171, 100%, 41%)) var(--un-gradient-from-position);
+  --un-gradient-to:rgba(56,189,248,0) var(--un-gradient-to-position);
+  --un-gradient-stops:var(--un-gradient-from),var(--un-gradient-to);
+  --un-gradient-to-position:100%;
+  --un-gradient-to:var(--bulma-link, hsl(217, 71%, 53%)) var(--un-gradient-to-position);
+  --un-gradient-shape:to right;
+  --un-gradient:var(--un-gradient-shape),var(--un-gradient-stops);
+  background-image:linear-gradient(var(--un-gradient));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  font-weight:600;
+}
+
+/* --- Utility & Input Styling --- */
+.h-full { height: 100%; }
+.w-full { width: 100%; }
+
+.input,
+#messageInput
+{
+  background-color: var(--bulma-input-background-color);
+  color: var(--bulma-input-color);
+  
+  /* Skeuomorphic border for light mode */
+  border-width: 1px;
+  border-style: solid;
+  border-top-color: var(--bulma-input-skeu-border-dark, var(--bulma-input-border-color)); /* Fallback to flat if skeu not defined */
+  border-left-color: var(--bulma-input-skeu-border-dark, var(--bulma-input-border-color));
+  border-bottom-color: var(--bulma-input-skeu-border-light, var(--bulma-input-border-color));
+  border-right-color: var(--bulma-input-skeu-border-light, var(--bulma-input-border-color));
+  
+  border-radius: 4px;
+  
+  /* Adjusted inner shadow for skeuomorphic effect in light mode */
+  box-shadow: inset 1px 1px 2px rgba(0,0,0,0.1),
+              inset 0 0 0 transparent; /* Clear any previous focus shadow component */
+              
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+/* Dark theme flat input borders (overrides the multi-side border colors if not using skeuomorphism in dark) */
+html.theme-dark .input,
+html.theme-dark #messageInput {
+  border: 1px solid var(--bulma-input-border-color); /* Use single border color for dark mode flat design */
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.075); /* Standard dark mode inner shadow */
+}
+
+
+.input::placeholder,
+#messageInput::placeholder {
+  color: #888888;
+  opacity: 1;
+}
+
+.input:focus,
+#messageInput:focus {
+  /* Skeuomorphic focus for light mode */
+  border-top-color: var(--bulma-input-focus-border-color);
+  border-left-color: var(--bulma-input-focus-border-color);
+  border-bottom-color: var(--bulma-input-focus-border-color); /* Or use skeu-border-light */
+  border-right-color: var(--bulma-input-focus-border-color); /* Or use skeu-border-light */
+  
+  box-shadow: inset 1px 1px 2px rgba(0,0,0,0.15), /* Slightly deeper inner shadow on focus */
+              0 0 0 0.2rem rgba(var(--bulma-link-rgb), 0.25); /* Outer focus ring */
+  outline: 0;
+}
+
+/* Dark theme flat focus */
+html.theme-dark .input:focus,
+html.theme-dark #messageInput:focus {
+  border-color: var(--bulma-input-focus-border-color); /* Single border color focus */
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.075), 0 0 0 0.2rem rgba(var(--bulma-link-rgb), 0.25);
+}
+
+
+#messageInput {
+  resize: none;
+  min-height: calc(1.5em + .75rem + 2px);
+  max-height: 120px;
+  overflow-y: auto;
+  line-height: 1.5;
+}
+
+
+/* --- Message Alignment --- */
+.sended > div:nth-child(2) { display: flex; justify-content: flex-end; }
+.received > div:nth-child(2) { display: flex; justify-content: flex-start; }
+.system > div:nth-child(2) { display: flex; justify-content: center; }
+
+/* --- Modal Styling --- */
+.modal-card {
+  background-color: var(--bulma-card-background-color);
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.08);
+  max-width: 480px;
+}
+html.theme-dark .modal-card {
+   box-shadow: 0 8px 16px rgba(0,0,0,0.3), 0 3px 6px rgba(0,0,0,0.25);
+}
+
+.modal-card-head,
+.modal-card-foot {
+  background-color: transparent;
+  border-bottom: 1px solid var(--bulma-border-light);
+  padding: 1rem 1.5rem;
+}
+.modal-card-foot {
+  border-top: 1px solid var(--bulma-border-light);
+  border-bottom: none;
+}
+
+.modal-card-body {
+  background-color: var(--bulma-card-body-background-color);
+  padding: 1.5rem;
+}
+
+
+.modal-card-title {
+  font-size: 1.25rem;
+  color: var(--bulma-title-color);
+  font-weight: 600;
+}
+
+.modal-card .label {
+  color: var(--bulma-label-color);
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+#roomTipsNotification {
+  font-size: 0.85rem;
+  background-color: var(--bulma-info-light);
+  color: var(--bulma-info-dark);
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+}
+html.theme-dark #roomTipsNotification {
+  background-color: var(--bulma-info-dark);
+  color: var(--bulma-info-light);
+}
+
+#roomTipsNotification strong { color: inherit; }
+#roomTipsNotification a { color: var(--bulma-link); text-decoration: underline; }
+#roomTipsNotification a:hover { color: var(--bulma-link-hover); }
+
+
+/* --- Footer Link --- */
+.footer-custom-link {
+  color: var(--bulma-grey);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.2s ease-out;
+  display: inline-block;
+}
+.footer-custom-link:hover,
+.footer-custom-link:focus {
+  color: var(--bulma-link);
+  transform: translateY(-1px);
+}
+html.theme-dark .footer-custom-link { color: var(--bulma-grey-light); }
+html.theme-dark .footer-custom-link:hover,
+html.theme-dark .footer-custom-link:focus { color: var(--bulma-link-light); }
+
+/* --- General Transition --- */
+.transition {
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.15s;
+}
+
