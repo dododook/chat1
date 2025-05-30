@@ -56,7 +56,7 @@
       </div>
       <footer class="content has-text-centered has-text-grey-light pb-5 pt-3">
         <p>
-          <a href="https://arksec.net" target="_blank" rel="noopener noreferrer" class="footer-custom-link"> by MrLee | 🍉My Blog </a>
+          <a href="https://VPS.128128.BEST" target="_blank" rel="noopener noreferrer" class="footer-custom-link"> by RON | 🍉My Blog </a>
         </p>
       </footer>
     </div>
